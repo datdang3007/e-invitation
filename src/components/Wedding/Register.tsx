@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sendToGoogleSheets } from "../../utils/googleSheets";
+import { sendToDiscord } from "../../utils/discordService";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -22,20 +22,22 @@ export const Register = () => {
     setError(null);
 
     try {
-      // Try to send to Google Sheets
-      const success = await sendToGoogleSheets({
+      // Try to send notification to Discord
+      const success = await sendToDiscord({
         name,
         isAttending: isAttending === true,
         isWithPartner: isWithPartner === true,
       });
 
-      // Still show success even if Google Sheets fails (for demo purposes)
-      // You can remove this fallback if you want to require Google Sheets
-      setLoading(false);
-      setAnimate(true);
-      setTimeout(() => {
-        setSubmitted(true);
-      }, 500);
+      if (success) {
+        setLoading(false);
+        setAnimate(true);
+        setTimeout(() => {
+          setSubmitted(true);
+        }, 500);
+      } else {
+        throw new Error("Failed to send");
+      }
     } catch (err) {
       console.error("Submission error:", err);
       setError("Có lỗi xảy ra, vui lòng thử lại!");
