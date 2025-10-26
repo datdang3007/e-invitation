@@ -1,4 +1,4 @@
-import THN_9521 from "../../../public/images/THN_9521.jpeg";
+const THN_9521 = "/images/THN_9521.jpeg";
 
 export const ImagePic = () => {
   return (

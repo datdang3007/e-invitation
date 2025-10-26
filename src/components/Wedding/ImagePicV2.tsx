@@ -1,4 +1,4 @@
-import HNREE5245 from "../../../public/images/HNREE5245.JPG";
+const HNREE5245 = "/images/HNREE5245.JPG";
 
 export const ImagePicV2 = () => {
   return (

@@ -1,4 +1,4 @@
-import calendar_heart from "../../../public/images/calen_heart.png";
+const CALENDAR_HEART = "/images/calen_heart.png";
 
 export const Calendar = () => {
   return (
@@ -77,8 +77,8 @@ export const Calendar = () => {
             28
           </span>
           <img
-            src={calendar_heart}
-            alt="calendar_heart"
+            src={CALENDAR_HEART}
+            alt="Calendar heart"
             className="absolute w-[70px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             style={{
               zIndex: 1,

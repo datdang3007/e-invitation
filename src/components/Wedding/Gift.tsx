@@ -1,5 +1,5 @@
-import QR_CODE from "../../../public/images/qr_code.jpg";
-import QR_CODE_WIFE from "../../../public/images/qr_code_wife.jpg";
+const QR_CODE = "/images/qr_code.jpg";
+const QR_CODE_WIFE = "/images/qr_code_wife.jpg";
 
 export const Gift = () => {
   return (

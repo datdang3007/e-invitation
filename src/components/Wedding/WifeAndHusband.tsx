@@ -1,6 +1,7 @@
-import DSC_9960 from "../../../public/images/DSC_9960.jpeg";
-import THN_9425 from "../../../public/images/THN_9425.jpeg";
 import { LazyImage } from "../ui/lazy-image";
+
+const DSC_9960 = "/images/DSC_9960.JPEG";
+const THN_9425 = "/images/THN_9425.JPEG";
 
 export const WifeAndHusband = () => {
   return (

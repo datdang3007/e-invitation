@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import AUDIO from "../../../public/images/audio.png";
-import NOTHING_S_GONNA_CHANGE_MY_LOVE_FOR_YOU from "../../../public/audio/Nothing's_Gonna_Change_My_Love_for_You.mp3";
+
+const AUDIO = "/images/audio.png";
+const NOTHING_S_GONNA_CHANGE_MY_LOVE_FOR_YOU =
+  "/audio/Nothing's_Gonna_Change_My_Love_for_You.mp3";
 
 type Props = {
   children: React.ReactNode;
