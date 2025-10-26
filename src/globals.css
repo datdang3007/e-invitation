@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Luxurious+Script&family=Noto+Sans+SC:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +99,43 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: "Google Sans Code", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-luxurious {
+    font-family: "Luxurious Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-playfair-display {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-great-vibes {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-allura {
+    font-family: "Allura", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-noto-serif-sc {
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 }
