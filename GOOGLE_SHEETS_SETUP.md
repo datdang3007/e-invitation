@@ -9,7 +9,7 @@
 ## Bước 2: Tạo Apps Script
 
 1. Trong Google Sheets, chọn: **Extensions > Apps Script**
-2. Xóa code mặc định và paste code sau:
+2. Xóa code mặc định và paste code từ file `GOOGLE_APPS_SCRIPT_CODE.js`
 
 ```javascript
 function doPost(e) {
@@ -156,9 +156,29 @@ Bạn có thể thêm các field khác trong Register component và update code 
 
 ## Troubleshooting
 
-**Lỗi CORS**: Bỏ qua, Google Apps Script đã handle CORS.
+### Lỗi CORS
 
-**Không thấy data**:
+Nếu gặp lỗi CORS trong Console, làm theo:
+
+1. **Kiểm tra deployment permissions:**
+
+   - Vào Apps Script > Deploy > Manage deployments
+   - Edit deployment > Ensure "Who has access" = "Anyone"
+   - Click Redeploy
+
+2. **Clear cache và test lại:**
+
+   - Hard refresh browser (Ctrl+Shift+R hoặc Cmd+Shift+R)
+   - Kiểm tra Console có lỗi gì không
+
+3. **Verify Apps Script code:**
+   - Mở Apps Script editor
+   - Check code có đúng như file `GOOGLE_APPS_SCRIPT_CODE.js`
+   - Run test function `doGet` để verify
+
+**Note:** Code đã được update để xử lý CORS đúng cách với `mode: "no-cors"`
+
+### Không thấy data:
 
 - Kiểm tra URL trong `.env`
 - Kiểm tra Console trong Apps Script editor

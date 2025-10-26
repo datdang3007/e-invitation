@@ -127,7 +127,7 @@ export const WeddingContainer = ({ children }: Props) => {
         >
           <div className="text-center select-none">
             <div className="font-script text-4xl text-gray-800 mb-4 animate-pulse">
-              Touch to Start
+              Chạm để bắt đầu
             </div>
             <div className="font-luxurious text-2xl text-pink-600 animate-bounce">
               ♡
