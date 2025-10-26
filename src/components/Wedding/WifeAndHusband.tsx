@@ -1,7 +1,7 @@
 import { LazyImage } from "../ui/lazy-image";
 
-const DSC_9960 = "/images/DSC_9960.JPEG";
-const THN_9425 = "/images/THN_9425.JPEG";
+const GROOM = "/images/groom.jpg";
+const BRIDE = "/images/bride.jpg";
 
 export const WifeAndHusband = () => {
   return (
@@ -9,7 +9,7 @@ export const WifeAndHusband = () => {
       {/* Wife */}
       <div className="w-[90%] shadow-xl rounded-3xl bg-white overflow-hidden flex flex-col items-end relative">
         <LazyImage
-          src={THN_9425}
+          src={BRIDE}
           alt="Cô dâu"
           className="w-full object-cover rounded-3xl"
           style={{ height: 420, objectPosition: "top" }}
@@ -35,7 +35,7 @@ export const WifeAndHusband = () => {
       {/* Husband */}
       <div className="w-[90%] shadow-xl rounded-3xl bg-white overflow-hidden flex flex-col items-end relative">
         <LazyImage
-          src={DSC_9960}
+          src={GROOM}
           alt="Chú rể"
           className="w-full object-cover rounded-3xl"
           style={{ height: 420, objectPosition: "top" }}

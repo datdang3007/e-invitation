@@ -176,7 +176,7 @@ Nếu gặp lỗi CORS trong Console, làm theo:
    - Check code có đúng như file `GOOGLE_APPS_SCRIPT_CODE.js`
    - Run test function `doGet` để verify
 
-**Note:** Code đã được update để xử lý CORS đúng cách với `mode: "no-cors"`
+**Note:** Code đã được update để xử lý CORS đúng cách. Không sử dụng `mode: "no-cors"` vì nó gây ra lỗi 405 Method Not Allowed.
 
 ### Không thấy data:
 

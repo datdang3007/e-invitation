@@ -1,4 +1,4 @@
-const HNREE5245 = "/images/HNREE5245.JPG";
+const COUPLE = "/images/couple.jpg";
 
 export const ImagePicV2 = () => {
   return (
@@ -18,7 +18,7 @@ export const ImagePicV2 = () => {
       {/* Image */}
       <div className="w-full object-cover mt-2">
         <img
-          src={HNREE5245}
+          src={COUPLE}
           alt="Wedding Invitation"
           className="w-full object-cover"
           style={{

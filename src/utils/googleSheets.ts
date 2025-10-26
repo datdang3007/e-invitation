@@ -62,18 +62,24 @@ export const sendToGoogleSheets = async (
   data: RegisterData
 ): Promise<boolean> => {
   try {
+    // Sửa: Bỏ mode: "no-cors" để có thể đọc response
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
-      mode: "no-cors", // Bypass CORS cho Google Apps Script
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
       body: JSON.stringify(data),
     });
 
-    // Với mode: "no-cors", response sẽ là opaque và không thể đọc được
-    // Nhưng request đã được gửi thành công
-    return true;
+    // Đọc response để kiểm tra kết quả
+    const result = await response.json();
+
+    if (result.success) {
+      return true;
+    } else {
+      console.error("Google Sheets error:", result.error);
+      return false;
+    }
   } catch (error) {
     console.error("Error sending to Google Sheets:", error);
     return false;
