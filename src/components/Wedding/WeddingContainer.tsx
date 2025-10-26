@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactAudioPlayer from "react-audio-player";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 const AUDIO = "/images/audio.png";
 const NOTHING_S_GONNA_CHANGE_MY_LOVE_FOR_YOU =
@@ -12,29 +13,54 @@ type Props = {
 export const WeddingContainer = ({ children }: Props) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [interrupted, setInterrupted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   // Audio controls
-  const audioPlayerRef = useRef<ReactAudioPlayer>(null);
-  const [isPlaying, setIsPlaying] = useState(false); // auto play on load
+  const audioPlayerRef = useRef<AudioPlayer>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const hasAutoPlayedRef = useRef(false);
 
   // Khi user nhấn lên icon thì toggle nhạc
   const handleToggleAudio = () => {
     const newIsPlaying = !isPlaying;
     setIsPlaying(newIsPlaying);
-    const audio = audioPlayerRef.current?.audioEl.current;
-    if (!audio) return;
+
+    if (!audioPlayerRef.current) return;
+
     if (newIsPlaying) {
-      audio.play().catch(() => {
+      audioPlayerRef.current.audio.current?.play().catch(() => {
         setIsPlaying(false);
-        // auto-play có thể bị block bởi browser
       });
     } else {
-      audio.pause();
+      audioPlayerRef.current.audio.current?.pause();
     }
+  };
+
+  // Handle start
+  const handleStart = () => {
+    if (hasStarted) return;
+    setHasStarted(true);
+
+    // Start audio
+    if (audioPlayerRef.current) {
+      hasAutoPlayedRef.current = true;
+      audioPlayerRef.current.audio.current?.play().catch((err) => {
+        console.log("Failed to play audio:", err);
+      });
+    }
+
+    // Start auto-scroll after a delay
+    setTimeout(() => {
+      if (wrapperRef.current) {
+        wrapperRef.current.scrollTo({ top: 0 });
+      }
+    }, 500);
   };
 
   // Dùng requestAnimationFrame để mượt hơn & tránh lag khi có nhiều ảnh
   useEffect(() => {
+    if (!hasStarted) return; // Chỉ chạy auto-scroll sau khi user click start
+
     let animationFrameId: number | null = null;
     let delayTimeoutId: number | null = null;
     const wrapper = wrapperRef.current;
@@ -46,6 +72,7 @@ export const WeddingContainer = ({ children }: Props) => {
       if (!isUserInteracted) {
         setInterrupted(true);
         isUserInteracted = true;
+
         if (animationFrameId !== null) {
           cancelAnimationFrame(animationFrameId);
         }
@@ -73,12 +100,12 @@ export const WeddingContainer = ({ children }: Props) => {
       animationFrameId = requestAnimationFrame(scrollStep);
     };
 
-    // Bắt đầu tự động scroll nếu chưa bị interrupted, Đợi 2s trước khi scroll
+    // Bắt đầu tự động scroll nếu chưa bị interrupted
     if (!interrupted) {
       wrapper.scrollTo({ top: 0 });
       delayTimeoutId = window.setTimeout(() => {
         animationFrameId = requestAnimationFrame(scrollStep);
-      }, 1000); // 1 giây
+      }, 1000); // Đợi 1 giây sau khi start
     }
 
     // cleanup
@@ -88,19 +115,35 @@ export const WeddingContainer = ({ children }: Props) => {
       wrapper.removeEventListener("wheel", handleScroll);
       wrapper.removeEventListener("touchstart", handleScroll);
     };
-  }, [interrupted]);
+  }, [interrupted, hasStarted]);
 
   return (
     <div className="min-h-screen bg-white sm:flex sm:items-center sm:justify-center relative">
-      <ReactAudioPlayer
+      {/* Start Overlay */}
+      {!hasStarted && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-pink-100 via-white to-white cursor-pointer"
+          onClick={handleStart}
+        >
+          <div className="text-center select-none">
+            <div className="font-script text-4xl text-gray-800 mb-4 animate-pulse">
+              Touch to Start
+            </div>
+            <div className="font-luxurious text-2xl text-pink-600 animate-bounce">
+              ♡
+            </div>
+          </div>
+        </div>
+      )}
+
+      <AudioPlayer
         loop
-        autoPlay
-        preload="auto"
+        volume={0.7}
+        layout="stacked"
         ref={audioPlayerRef}
         style={{ display: "none" }}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
         src={NOTHING_S_GONNA_CHANGE_MY_LOVE_FOR_YOU}
       />
 

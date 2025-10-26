@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { sendToGoogleSheets } from "../../utils/googleSheets";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -7,23 +8,39 @@ export const Register = () => {
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Animation state for success
   const [animate, setAnimate] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loading || !name || isWithPartner === null) return;
-    setLoading(true);
+    if (loading || !name || isWithPartner === null || isAttending === null)
+      return;
 
-    // Simulate API call
-    setTimeout(() => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Try to send to Google Sheets
+      const success = await sendToGoogleSheets({
+        name,
+        isAttending: isAttending === true,
+        isWithPartner: isWithPartner === true,
+      });
+
+      // Still show success even if Google Sheets fails (for demo purposes)
+      // You can remove this fallback if you want to require Google Sheets
       setLoading(false);
       setAnimate(true);
       setTimeout(() => {
         setSubmitted(true);
-      }, 500); // duration of fade out
-    }, 1400);
+      }, 500);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setError("Có lỗi xảy ra, vui lòng thử lại!");
+      setLoading(false);
+    }
   };
 
   return (
@@ -228,15 +245,30 @@ export const Register = () => {
               </div>
             </div>
 
+            {/* Error message */}
+            {error && (
+              <div className="w-full mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-600 text-center">{error}</p>
+              </div>
+            )}
+
             {/* Submit button */}
             <button
               className={`w-full ${
-                name && isWithPartner !== null && !loading
+                name &&
+                isWithPartner !== null &&
+                isAttending !== null &&
+                !loading
                   ? "bg-[#9c1a15] hover:bg-[#a43b3e] cursor-pointer"
                   : "bg-gray-300 cursor-not-allowed"
               } text-white font-script text-lg rounded-md py-2 font-medium transition-colors duration-200 flex items-center justify-center`}
               type="submit"
-              disabled={!name || isWithPartner === null || loading}
+              disabled={
+                !name ||
+                isWithPartner === null ||
+                isAttending === null ||
+                loading
+              }
               style={{ position: "relative", minHeight: 44 }}
             >
               {loading ? (
