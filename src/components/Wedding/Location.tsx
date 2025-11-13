@@ -33,7 +33,7 @@ export const Location = () => {
         <div>
           Thân mời bạn đến dự lễ thành hôn
           <br />
-          Được tổ chức vào <span className="font-bold">18:00</span>, Thứ SÁU
+          Được tổ chức vào <span className="font-bold">18:00</span>, Thứ BẢY
         </div>
       </div>
 
@@ -45,7 +45,7 @@ export const Location = () => {
             <span className="text-lg font-script pr-2">Tháng</span>
             <span className="text-xl font-script font-bold">11</span>
             <span className="ml-4 text-5xl font-script font-bold leading-none tracking-wide">
-              28
+              29
             </span>
             <span className="ml-4 text-lg font-script pr-2">Năm</span>
             <span className="text-xl font-script font-bold">2025</span>
@@ -56,17 +56,17 @@ export const Location = () => {
 
       {/* ngày âm */}
       <div className="font-script text-center text-xs text-gray-500">
-        (Tức ngày 09 tháng 10 năm 2025)
+        (Tức ngày 10 tháng 10 năm 2025)
       </div>
 
       {/* Địa điểm */}
       <div className="font-luxurious text-center text-4xl mt-16">Địa Điểm</div>
-      <div className="font-script text-center text-xl mt-4">
-        Gia Viên Restaurant Hải Phòng
+      <div className="font-script text-center text-lg mt-4">
+        Tầng 3 - Gia Viên Restaurant Hải Phòng
       </div>
 
       {/* Map */}
-      <div className="rounded-lg overflow-hidden mt-4">
+      <div className="rounded-lg overflow-hidden mt-2">
         <iframe
           title="Gia Viên Restaurant and event centre"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4810.792662138612!2d106.67338232612593!3d20.86225554347494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314a7a5f597592c9%3A0xed87aceef8c18aca!2sGia%20Vi%C3%AAn%20Restaurant%20and%20event%20centre%20H%E1%BA%A3i%20Ph%C3%B2ng!5e1!3m2!1svi!2s!4v1761407332413!5m2!1svi!2s"

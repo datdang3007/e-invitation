@@ -2,7 +2,7 @@ const CALENDAR_HEART = "/images/calen_heart.png";
 
 export const Calendar = () => {
   return (
-    <div className="relative mt-16 w-full bg-white rounded-md flex flex-col items-center justify-start overflow-hidden select-none text-[#231b18] font-serif">
+    <div className="relative mt-16 pb-4 w-full bg-white rounded-md flex flex-col items-center justify-start overflow-hidden select-none text-[#231b18] font-serif">
       {/* Header */}
       <div className="w-full flex justify-between items-center pt-5 px-6 mb-3">
         <span className="font-script text-lg">Our wedding day</span>
@@ -50,7 +50,7 @@ export const Calendar = () => {
         ))}
 
         {/* 22 - 27 */}
-        {[22, 23, 24, 25, 26, 27].map((day) => (
+        {[22, 23, 24, 25, 26, 27, 28].map((day) => (
           <div
             key={day}
             className="text-center"
@@ -60,7 +60,7 @@ export const Calendar = () => {
           </div>
         ))}
 
-        {/* Day 28 with a heart */}
+        {/* Day 29 with a heart */}
         <div
           className="relative flex items-center justify-center text-center"
           style={{ fontFamily: '"Playfair Display", serif' }}
@@ -74,7 +74,7 @@ export const Calendar = () => {
               fontFamily: '"Playfair Display", serif',
             }}
           >
-            28
+            29
           </span>
           <img
             src={CALENDAR_HEART}
@@ -89,7 +89,7 @@ export const Calendar = () => {
         </div>
 
         {/* 29 - 31 */}
-        {[29, 30].map((day) => (
+        {[30].map((day) => (
           <div
             key={day}
             className="text-center"
