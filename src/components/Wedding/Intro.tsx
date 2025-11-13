@@ -17,8 +17,8 @@ export const Intro = ({ children }: Props) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Ngày cưới cố định: 28/11/2025
-  const weddingDateStr = new Date(2025, 10, 28).toLocaleDateString("vi-VN", {
+  // Ngày cưới cố định: 29/11/2025
+  const weddingDateStr = new Date(2025, 10, 29).toLocaleDateString("vi-VN", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
